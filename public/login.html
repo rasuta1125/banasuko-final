@@ -4,174 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン - バナスコAI</title>
-    <link rel="stylesheet" href="/static/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <meta name="description" content="バナスコAIにログインしてAI分析を開始">
-</head>
-<body class="login-page">
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="/">
-                    <h1>🎯 バナスコAI</h1>
-                </a>
-            </div>
-            <nav class="nav">
-                <a href="/" class="nav-link">ホーム</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Login Section -->
-    <section class="login-section">
-        <div class="login-container">
-            <div class="login-form-wrapper">
-                <div class="login-header">
-                    <h2>ログイン</h2>
-                    <p>バナスコAIでAI分析を開始しましょう</p>
-                </div>
-
-                <!-- Error Message -->
-                <div id="errorMessage" class="error-message" style="display: none;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span id="errorText"></span>
-                </div>
-
-                <!-- Success Message -->
-                <div id="successMessage" class="success-message" style="display: none;">
-                    <i class="fas fa-check-circle"></i>
-                    <span id="successText"></span>
-                </div>
-
-                <form id="loginForm" class="login-form">
-                    <div class="form-group">
-                        <label for="email">
-                            <i class="fas fa-envelope"></i>
-                            メールアドレス
-                        </label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email" 
-                            required 
-                            placeholder="example@email.com"
-                            autocomplete="email"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">
-                            <i class="fas fa-lock"></i>
-                            パスワード
-                        </label>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password" 
-                            required 
-                            placeholder="パスワードを入力"
-                            autocomplete="current-password"
-                        >
-                    </div>
-
-                    <div class="form-options">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="rememberMe" name="rememberMe">
-                            <span class="checkmark"></span>
-                            ログイン状態を保持
-                        </label>
-                        <a href="#" class="forgot-password">パスワードを忘れた方</a>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-login" id="loginButton">
-                        <span class="button-text">ログイン</span>
-                        <div class="spinner" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i>
-                        </div>
-                    </button>
-                </form>
-
-                <div class="login-divider">
-                    <span>または</span>
-                </div>
-
-                <div class="social-login">
-                    <button class="btn btn-google" id="googleLoginBtn">
-                        <i class="fab fa-google"></i>
-                        Googleでログイン
-                    </button>
-                </div>
-
-                <div class="signup-link">
-                    <p>アカウントをお持ちでない方は <a href="#" id="signupLink">新規登録</a></p>
-                    <p><strong>テスト用:</strong> <button class="btn btn-info" id="createDemoBtn" style="margin-top: 10px;">デモアカウント作成</button></p>
-                </div>
-            </div>
-
-            <div class="login-info">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>セキュアな認証</h3>
-                    <p>Firebase認証システムで安全にログイン</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>即座に開始</h3>
-                    <p>ログイン後すぐにAI分析を体験できます</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Scripts -->
-    <script type="module" src="/static/js/auth.js"></script>
-    <script type="module" src="/static/app.js"></script>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Initialize login page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set focus to email field
-            document.getElementById('email').focus();
-            
-            // Handle signup link
-            document.getElementById('signupLink').addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('新規登録: 任意のメールアドレスとパスワード（6文字以上）でアカウントを作成できます。\n\n手順:\n1. メールアドレス入力\n2. パスワード入力（6文字以上）\n3. ログインボタンをクリック\n4. エラーが出たら、下の「デモアカウント作成」ボタンをクリック');
-            });
-            
-            // Handle demo account creation
-            document.getElementById('createDemoBtn').addEventListener('click', async function(e) {
-                e.preventDefault();
-                
-                try {
-                    const { register } = await import('/static/js/auth.js');
-                    
-                    // デモアカウントを作成
-                    await register('demo@banasuko.com', 'demo123456');
-                    alert('デモアカウントが作成されました！\nメール: demo@banasuko.com\nパスワード: demo123456');
-                    
-                    // フォームにデモ情報を設定
-                    document.getElementById('email').value = 'demo@banasuko.com';
-                    document.getElementById('password').value = 'demo123456';
-                    
-                } catch (error) {
-                    if (error.code === 'auth/email-already-in-use') {
-                        alert('デモアカウントは既に存在します！\nメール: demo@banasuko.com\nパスワード: demo123456\n\n上記でログインしてください。');
-                        
-                        // フォームにデモ情報を設定
-                        document.getElementById('email').value = 'demo@banasuko.com';
-                        document.getElementById('password').value = 'demo123456';
-                    } else {
-                        alert('エラー: ' + error.message);
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': {
+                            800: '#1e293b',
+                            700: '#334155'
+                        },
+                        'cyber-blue': '#00bcd4',
+                        'cyber-purple': '#9c27b0',
+                        'cyber-pink': '#e91e63',
+                        'cyber-orange': '#ff9800',
+                        'cyber-green': '#4caf50'
+                    },
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'monospace']
                     }
                 }
-            });
-        });
+            }
+        }
     </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+    
+    
+    <style>
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-up { animation: slide-up 0.6s ease-out; }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 188, 212, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(0, 188, 212, 0.6); }
+        }
+        .animate-pulse-glow { animation: pulse-glow 2s infinite; }
+        
+        body { 
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 to-slate-800 text-white min-h-screen">
+    
+            <div class="min-h-screen pt-20 pb-20">
+                <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="bg-navy-800/50 backdrop-blur-lg rounded-3xl border border-cyber-blue/20 p-8 shadow-2xl animate-slide-up">
+                        <!-- Header -->
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 bg-gradient-to-br from-cyber-blue to-cyber-purple rounded-2xl flex items-center justify-center mx-auto mb-6 animate-pulse-glow">
+                                <i class="fas fa-user-circle text-3xl text-white"></i>
+                            </div>
+                            <h1 class="text-3xl font-orbitron font-bold text-white mb-2">ログイン</h1>
+                            <p class="text-gray-400">バナスコAIにアクセス</p>
+                        </div>
+                        
+                        <!-- メッセージ表示 -->
+                        <div class="text-center mb-6">
+                            <p class="text-yellow-400 text-sm">⚠️ この静的ページではログイン機能は利用できません</p>
+                            <p class="text-cyan-400 text-sm mt-2">フル機能版は開発サーバーでご利用ください</p>
+                        </div>
+                        
+                        <!-- Demo Login Info -->
+                        <div class="bg-cyber-blue/10 border border-cyber-blue/20 rounded-xl p-6 mb-6">
+                            <h3 class="text-lg font-semibold text-cyber-blue mb-3">
+                                <i class="fas fa-rocket mr-2"></i>デモアカウント情報
+                            </h3>
+                            <div class="bg-navy-700/50 rounded-lg p-4 mb-4">
+                                <div class="grid grid-cols-1 gap-2 text-sm">
+                                    <div>
+                                        <span class="text-gray-400">メールアドレス:</span>
+                                        <div class="text-cyber-blue font-mono font-semibold">demo@banasuko.com</div>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-400">パスワード:</span>
+                                        <div class="text-cyber-blue font-mono font-semibold">demo123</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Features Info -->
+                        <div class="bg-navy-800/30 backdrop-blur-lg rounded-2xl border border-gray-700/30 p-6">
+                            <h3 class="text-lg font-semibold text-white mb-4 text-center">
+                                <i class="fas fa-star mr-2 text-cyber-blue"></i>利用可能機能
+                            </h3>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex items-center text-gray-300">
+                                    <i class="fas fa-chart-line mr-3 text-cyber-blue w-4"></i>
+                                    <span>banaAI画像診断 - 詳細分析とスコアリング</span>
+                                </div>
+                                <div class="flex items-center text-gray-300">
+                                    <i class="fas fa-balance-scale mr-3 text-cyber-green w-4"></i>
+                                    <span>A/B比較分析 - 統計的有意性に基づく判定</span>
+                                </div>
+                                <div class="flex items-center text-gray-300">
+                                    <i class="fas fa-magic mr-3 text-cyber-pink w-4"></i>
+                                    <span>AIコピー生成 - 効果的な広告文の自動生成</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    
+    <!-- Custom JavaScript -->
+    <script src="/static/app.js"></script>
+    <script src="/static/js/auth.js"></script>
 </body>
 </html>
