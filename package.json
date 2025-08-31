@@ -1,0 +1,24 @@
+{
+  "name": "banasuko-final",
+  "version": "1.0.0",
+  "description": "Banasuko - AI Image Analysis Platform (Final Version)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "wrangler pages dev --compatibility-flag nodejs_compat",
+    "build": "echo 'Build completed' && mkdir -p dist && cp -r public/* dist/",
+    "deploy": "wrangler pages deploy",
+    "deploy:prod": "wrangler pages deploy --project-name=banasuko-clean",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["cloudflare", "pages", "hono", "firebase", "ai"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hono": "^4.9.5",
+    "firebase-admin": "^13.5.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250831.0",
+    "wrangler": "^4.33.1"
+  }
+}

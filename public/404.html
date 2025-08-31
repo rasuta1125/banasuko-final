@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ページが見つかりません - バナスコAI</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="お探しのページが見つかりません">
+</head>
+<body class="error-page">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <h1>🎯 バナスコAI</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link">ホーム</a>
+                <a href="/login.html" class="nav-link">ログイン</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 404 Content -->
+    <main class="error-main">
+        <div class="container">
+            <div class="error-content">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h1 class="error-title">404</h1>
+                <h2 class="error-subtitle">ページが見つかりません</h2>
+                <p class="error-description">
+                    申し訳ございません。お探しのページは存在しないか、
+                    移動または削除された可能性があります。
+                </p>
+                <div class="error-actions">
+                    <a href="/" class="btn btn-primary">
+                        <i class="fas fa-home"></i>
+                        ホームに戻る
+                    </a>
+                    <button class="btn btn-secondary" onclick="history.back()">
+                        <i class="fas fa-arrow-left"></i>
+                        前のページに戻る
+                    </button>
+                </div>
+                <div class="error-suggestions">
+                    <h3>以下のページもご利用ください：</h3>
+                    <ul>
+                        <li><a href="/">ホーム - サービス概要</a></li>
+                        <li><a href="/login.html">ログイン - アカウントにアクセス</a></li>
+                        <li><a href="/dashboard.html">ダッシュボード - AI分析開始</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>🎯 バナスコAI</h3>
+                    <p>AIが切り開くマーケティングの未来</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 バナスコAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

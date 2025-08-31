@@ -1,0 +1,44 @@
+name = "banasuko-final"
+compatibility_date = "2025-08-31"
+pages_build_output_dir = "./dist"
+compatibility_flags = ["nodejs_compat"]
+
+# プロダクション環境用設定
+[env.production]
+compatibility_flags = ["nodejs_compat"]
+
+[[env.production.bindings]]
+name = "OPENAI_API_KEY"
+type = "secret"
+
+[[env.production.bindings]]
+name = "FIREBASE_PROJECT_ID"
+type = "secret"
+
+[[env.production.bindings]]
+name = "FIREBASE_PRIVATE_KEY"
+type = "secret"
+
+[[env.production.bindings]]
+name = "FIREBASE_CLIENT_EMAIL"
+type = "secret"
+
+# プレビュー環境用設定
+[env.preview]
+compatibility_flags = ["nodejs_compat"]
+
+[[env.preview.bindings]]
+name = "OPENAI_API_KEY"
+type = "secret"
+
+[[env.preview.bindings]]
+name = "FIREBASE_PROJECT_ID"
+type = "secret"
+
+[[env.preview.bindings]]
+name = "FIREBASE_PRIVATE_KEY"
+type = "secret"
+
+[[env.preview.bindings]]
+name = "FIREBASE_CLIENT_EMAIL"
+type = "secret"

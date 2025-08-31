@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>バナスコAI - バナー広告分析ツール</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="AIを活用したバナー広告分析ツール">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🎯 バナスコAI</h1>
+                <p class="tagline">AI-Powered Banner Analysis</p>
+            </div>
+            <nav class="nav">
+                <a href="#features" class="nav-link">機能</a>
+                <a href="#pricing" class="nav-link">料金</a>
+                <button id="loginBtn" class="btn btn-primary">ログイン</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">AIが解析する<br>バナー広告の新時代</h2>
+                <p class="hero-description">
+                    最新のAI技術でバナー広告を詳細分析。効果的なコピー提案から競合比較まで、
+                    マーケティングの成功をサポートします。
+                </p>
+                <div class="hero-buttons">
+                    <button id="startAnalysisBtn" class="btn btn-primary btn-large">
+                        <i class="fas fa-play"></i>
+                        分析を開始
+                    </button>
+                    <button class="btn btn-secondary btn-large">
+                        <i class="fas fa-info-circle"></i>
+                        詳しく見る
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="demo-banner">
+                    <i class="fas fa-image"></i>
+                    <p>AIバナー分析デモ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">主要機能</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI画像分析</h3>
+                    <p>最新のGPT-4 Visionでバナーの視覚的要素を詳細分析</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3>コピー改善提案</h3>
+                    <p>効果的なキャッチコピーとメッセージングを自動生成</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>競合分析</h3>
+                    <p>業界トレンドと競合他社のバナーデザインを比較分析</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>モバイル対応</h3>
+                    <p>スマートフォンからもカメラで撮影して即座に分析</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">料金プラン</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>フリー</h3>
+                    <div class="price">¥0<span>/月</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i>5回/月の分析</li>
+                        <li><i class="fas fa-check"></i>基本的なAI分析</li>
+                        <li><i class="fas fa-check"></i>コピー提案</li>
+                    </ul>
+                    <button class="btn btn-secondary">開始する</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>プロ</h3>
+                    <div class="price">¥2,980<span>/月</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i>50回/月の分析</li>
+                        <li><i class="fas fa-check"></i>高度なAI分析</li>
+                        <li><i class="fas fa-check"></i>競合分析</li>
+                        <li><i class="fas fa-check"></i>レポート出力</li>
+                    </ul>
+                    <button class="btn btn-primary">開始する</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>エンタープライズ</h3>
+                    <div class="price">¥9,800<span>/月</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i>無制限の分析</li>
+                        <li><i class="fas fa-check"></i>カスタムAIモデル</li>
+                        <li><i class="fas fa-check"></i>API連携</li>
+                        <li><i class="fas fa-check"></i>専用サポート</li>
+                    </ul>
+                    <button class="btn btn-secondary">お問い合わせ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>🎯 バナスコAI</h3>
+                    <p>AIが切り開くマーケティングの未来</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>製品</h4>
+                        <a href="#">機能</a>
+                        <a href="#">料金</a>
+                        <a href="#">API</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>サポート</h4>
+                        <a href="#">ヘルプセンター</a>
+                        <a href="#">お問い合わせ</a>
+                        <a href="#">利用規約</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 バナスコAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="/static/app.js"></script>
+</body>
+</html>
