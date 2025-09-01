@@ -3,21 +3,13 @@
 # API routes
 /api/*       /api/:splat       200
 
-# Static files - serve directly
-*.html       /:splat           200
-*.css        /:splat           200
-*.js         /:splat           200
-*.png        /:splat           200
-*.jpg        /:splat           200
-*.jpeg       /:splat           200
-*.gif        /:splat           200
-*.svg        /:splat           200
-*.ico        /:splat           200
-
-# Specific page routes
+# Specific page routes (highest priority)
 /login       /login.html       200
 /dashboard   /dashboard.html   200
 /analysis    /analysis.html    200
 
 # Root page
 /            /index.html       200
+
+# SPA fallback for all other routes
+/*          /index.html       200
