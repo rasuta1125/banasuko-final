@@ -8,7 +8,7 @@ const app = new Hono();
 
 // CORS設定
 app.use('*', cors({
-  origin: ['https://banasuko-clean.pages.dev', 'http://localhost:3000', 'http://localhost:8788'],
+  origin: ['https://4e171888.banasuko-final.pages.dev', 'http://localhost:3000', 'http://localhost:8788'],
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -17,7 +17,7 @@ app.use('*', cors({
 // ヘルスチェック
 app.get('/', (c) => {
   return c.json({
-    message: 'Banasuko API Server (Clean Version)',
+    message: 'Banasuko API Server (Final Version)',
     status: 'healthy',
     timestamp: new Date().toISOString()
   });
