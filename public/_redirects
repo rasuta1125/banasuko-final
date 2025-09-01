@@ -3,10 +3,15 @@
 # API routes should go to the Functions first
 /api/*       /api/:splat       200
 
-# Specific page routes
+# Specific page routes - exact matches
 /login       /login.html       200
 /dashboard   /dashboard.html   200
 /analysis    /analysis.html    200
 
+# Handle login with trailing slash
+/login/      /login.html       200
+/dashboard/  /dashboard.html   200
+/analysis/   /analysis.html    200
+
 # SPA fallback - only for routes without file extensions
-/:path       /index.html       200
+/*          /index.html       200
