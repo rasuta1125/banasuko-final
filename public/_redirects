@@ -3,7 +3,7 @@
 # API routes should go to the Functions first
 /api/*       /api/:splat       200
 
-# Specific page routes - exact matches
+# Specific page routes - exact matches (highest priority)
 /login       /login.html       200
 /dashboard   /dashboard.html   200
 /analysis    /analysis.html    200
@@ -13,5 +13,8 @@
 /dashboard/  /dashboard.html   200
 /analysis/   /analysis.html    200
 
-# SPA fallback - exclude .html files to prevent infinite loops
-/:path       /index.html       200
+# Root page
+/            /index.html       200
+
+# SPA fallback - only for routes that don't match above
+/*          /index.html       200
