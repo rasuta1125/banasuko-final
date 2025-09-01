@@ -23,6 +23,15 @@ type = "secret"
 name = "FIREBASE_CLIENT_EMAIL"
 type = "secret"
 
+# 初代バナスコと同じ環境変数を追加
+[[env.production.bindings]]
+name = "FIREBASE_WEB_API_KEY"
+type = "secret"
+
+[[env.production.bindings]]
+name = "FIREBASE_STORAGE_BUCKET"
+type = "secret"
+
 # プレビュー環境用設定
 [env.preview]
 compatibility_flags = ["nodejs_compat"]
@@ -41,4 +50,13 @@ type = "secret"
 
 [[env.preview.bindings]]
 name = "FIREBASE_CLIENT_EMAIL"
+type = "secret"
+
+# 初代バナスコと同じ環境変数を追加
+[[env.preview.bindings]]
+name = "FIREBASE_WEB_API_KEY"
+type = "secret"
+
+[[env.preview.bindings]]
+name = "FIREBASE_STORAGE_BUCKET"
 type = "secret"

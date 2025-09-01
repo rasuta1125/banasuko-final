@@ -1,24 +1,5 @@
-// Firebase Authentication JavaScript統合
+// 初代バナスコの認証ロジックを移植
 // バナスコAI - ログイン・登録機能
-
-// Firebase設定
-const firebaseConfig = {
-  apiKey: "AIzaSyAflp1vqSA21sSYihZDTpje-MB1mCALxBs",
-  authDomain: "banasuko-auth.firebaseapp.com",
-  projectId: "banasuko-auth",
-  storageBucket: "banasuko-auth.firebasestorage.app",
-  messagingSenderId: "753581941845",
-  appId: "1:753581941845:web:18418afb254c309933e0dc",
-  measurementId: "G-09515RW8KC"
-};
-
-// Firebase初期化
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-
-// グローバル変数
-let currentUser = null;
-let isAuthReady = false;
 
 // ログインフォームの処理
 document.addEventListener('DOMContentLoaded', function() {
@@ -30,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginButtonText = document.getElementById('loginButtonText');
     const loginSpinner = document.getElementById('loginSpinner');
 
-    // フォーム送信処理
+    // フォーム送信処理（初代バナスコのAPIエンドポイントを使用）
     if (loginForm) {
         loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -43,42 +24,36 @@ document.addEventListener('DOMContentLoaded', function() {
             hideMessages();
             
             try {
-                // Firebase認証でログイン
-                const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                const user = userCredential.user;
+                // 初代バナスコのAPIエンドポイントを使用
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({ email, password })
+                });
                 
-                showSuccess('ログインに成功しました！ダッシュボードにリダイレクトします...');
-                setTimeout(() => {
-                    window.location.href = '/dashboard';
-                }, 1500);
+                const data = await response.json();
                 
-            } catch (error) {
-                console.error('Login error:', error);
-                let errorMessage = 'ログインに失敗しました';
-                
-                switch (error.code) {
-                    case 'auth/user-not-found':
-                        errorMessage = 'ユーザーが見つかりません';
-                        break;
-                    case 'auth/wrong-password':
-                        errorMessage = 'パスワードが間違っています';
-                        break;
-                    case 'auth/invalid-email':
-                        errorMessage = 'メールアドレスの形式が正しくありません';
-                        break;
-                    case 'auth/too-many-requests':
-                        errorMessage = 'ログイン試行回数が多すぎます。しばらく待ってから再試行してください';
-                        break;
+                if (data.success) {
+                    showSuccess('ログインに成功しました！ダッシュボードにリダイレクトします...');
+                    setTimeout(() => {
+                        window.location.href = '/dashboard';
+                    }, 1500);
+                } else {
+                    showError(data.error || 'ログインに失敗しました');
                 }
-                
-                showError(errorMessage);
+            } catch (error) {
+                showError('ネットワークエラーが発生しました');
+                console.error('Login error:', error);
             } finally {
                 setLoading(false);
             }
         });
     }
 
-    // デモログイン処理
+    // デモログイン処理（初代バナスコのデモアカウント）
     if (demoLoginBtn) {
         demoLoginBtn.addEventListener('click', async function(e) {
             e.preventDefault();
@@ -87,18 +62,32 @@ document.addEventListener('DOMContentLoaded', function() {
             hideMessages();
             
             try {
-                // デモアカウントでログイン
-                const userCredential = await auth.signInWithEmailAndPassword('demo@banasuko.com', 'demo123');
-                const user = userCredential.user;
+                // 初代バナスコのデモアカウント情報
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({ 
+                        email: 'demo@banasuko.com', 
+                        password: 'demo123' 
+                    })
+                });
                 
-                showSuccess('デモアカウントでログインしました！ダッシュボードにリダイレクトします...');
-                setTimeout(() => {
-                    window.location.href = '/dashboard';
-                }, 1500);
+                const data = await response.json();
                 
+                if (data.success) {
+                    showSuccess('デモアカウントでログインしました！ダッシュボードにリダイレクトします...');
+                    setTimeout(() => {
+                        window.location.href = '/dashboard';
+                    }, 1500);
+                } else {
+                    showError(data.error || 'デモログインに失敗しました');
+                }
             } catch (error) {
+                showError('ネットワークエラーが発生しました');
                 console.error('Demo login error:', error);
-                showError('デモログインに失敗しました: ' + error.message);
             } finally {
                 setLoading(false);
             }
@@ -155,16 +144,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // フォーカス設定
     const emailInput = document.getElementById('email');
     if (emailInput) emailInput.focus();
-});
-
-// 認証状態の監視
-auth.onAuthStateChanged(function(user) {
-    if (user) {
-        console.log('User is signed in:', user.email);
-        currentUser = user;
-    } else {
-        console.log('User is signed out');
-        currentUser = null;
-    }
-    isAuthReady = true;
 });
